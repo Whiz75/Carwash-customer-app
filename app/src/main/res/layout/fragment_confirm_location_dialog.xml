@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dialogs.ConfirmLocationDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/confirm_location_dialog_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close"
+                android:layout_alignParentEnd="true"
+                tools:ignore="ContentDescription" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/confirm_order_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm location"
+                android:textSize="18sp"
+                android:textAllCaps="true"
+                android:fontFamily="@font/teko_medium"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp" />
+        </RelativeLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/confirmLocationAddress_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="street address"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/teko_regular"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            app:drawableTint="@color/green"
+            style="@style/Widget.MaterialComponents.TextView"
+            app:drawableStartCompat="@drawable/ic_person_pin"
+            tools:ignore="HardcodedText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/close_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="confirm"
+            style="@style/Widget.MaterialComponents.Button"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:textAllCaps="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:elevation="3dp"
+            app:cornerRadius="5dp"
+            android:fontFamily="@font/teko_regular"
+            android:layout_gravity="end"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+</FrameLayout>

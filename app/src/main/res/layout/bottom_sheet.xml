@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:id="@+id/bottomsheet_cv"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="auto"
+    app:elevation="3dp">
+
+        <!--parent layout-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <!--location question text view -->
+                <TextView
+                    android:id="@+id/packed_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="where are you packed?"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/pragati_narrow_bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:drawablePadding="5dp"
+                    app:drawableTint="@color/green" />
+
+                <!--enter location text input layout-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/auto_location_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:boxStrokeColor="@color/gray"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_below="@id/packed_text"
+                    android:elevation="3dp">
+
+                        <!--enter location edittext-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="current location"
+                            android:textColorHint="@color/gray"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/pragati_narrow_regular"
+                            android:drawableStart="@drawable/ic_person_pin"
+                            android:drawablePadding="10dp"
+                            android:drawableTint="@color/slate_gray"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <!--text view to display the location coordinates-->
+                <TextView
+                    android:id="@+id/last_searched_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="location coordinates here"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/pragati_narrow_regular"
+                    android:drawablePadding="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/auto_location_address"
+                    app:drawableStartCompat="@drawable/ic_person_pin_circle" />
+
+                <!--confirm initial location button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/confirm_user_location"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="use location"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/teko_regular"
+                    android:layout_below="@id/last_searched_tv"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:textColor="@color/black"
+                    app:cornerRadius="5dp"
+                    android:layout_alignParentEnd="true"/>
+
+                <!--choose another location button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/enter_location_btn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Enter location"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/teko_regular"
+                    android:layout_below="@id/last_searched_tv"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="5dp"
+                    app:cornerRadius="5dp"
+                    android:textColor="@color/black" />
+        </RelativeLayout>
+</androidx.cardview.widget.CardView>

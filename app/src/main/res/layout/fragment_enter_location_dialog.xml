@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dialogs.EnterLocationDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialog_cancel_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:layout_gravity="end"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/enter_location_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your location"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/teko_medium"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_location_til"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/gray"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/gray"
+            android:elevation="3dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="current location"
+                android:textColorHint="@color/gray"
+                android:textSize="18sp"
+                android:fontFamily="@font/teko_regular"
+                android:drawableStart="@drawable/ic_person_pin"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/slate_gray"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/find_location_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="find location"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:fontFamily="@font/teko_regular"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            app:cornerRadius="5dp"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+</FrameLayout>
