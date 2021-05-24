@@ -101,7 +101,7 @@ public class EnterLocationDialogFragment extends DialogFragment { ;
                     dismiss();
 
                     ConfirmLocationDialogFragment dialogFragment = new ConfirmLocationDialogFragment(address);
-                    dialogFragment.show(getFragmentManager().beginTransaction(), "CONFIRM LOCATION");
+                    dialogFragment.show(Objects.requireNonNull(getFragmentManager()).beginTransaction(), "CONFIRM LOCATION");
 
                 } catch (Exception e) {
                     e.printStackTrace();
