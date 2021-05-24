@@ -8,13 +8,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -24,9 +22,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.findcarwashapp.R;
@@ -47,8 +42,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
@@ -123,19 +116,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             new AlertDialog.Builder(this)
                     .setTitle("Permission needed")
                     .setMessage("This permission is needed because of this and that")
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(MapActivity.this,
-                                    new String[] {Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_CODE);
-                        }
-                    })
-                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
+                    .setPositiveButton("ok", (dialog, which) -> ActivityCompat.requestPermissions(MapActivity.this,
+                            new String[] {Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_CODE))
+                    .setNegativeButton("cancel", (dialog, which) -> dialog.dismiss())
                     .create().show();
         } else {
             ActivityCompat.requestPermissions(this,
@@ -224,44 +207,41 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void navigationDrawer()
     {
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         toolbar.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        navigationView.setNavigationItemSelectedListener(item -> {
 
-                switch (item.getItemId())
-                {
-                    case R.id.nav_home:
-                        Toast.makeText(getApplicationContext(), "you clicked home", Toast.LENGTH_LONG).show();
-                        break;
+            switch (item.getItemId())
+            {
+                case R.id.nav_home:
+                    Toast.makeText(getApplicationContext(), "you clicked home", Toast.LENGTH_LONG).show();
+                    break;
 
-                    case R.id.nav_profile:
-                        //call profile frag
-                        ProfileDialogFragment dialogFragment = new ProfileDialogFragment();
-                        dialogFragment.show(getSupportFragmentManager().beginTransaction(), "PROFILE FRAG");
+                case R.id.nav_profile:
+                    //call profile frag
+                    ProfileDialogFragment dialogFragment = new ProfileDialogFragment();
+                    dialogFragment.show(getSupportFragmentManager().beginTransaction(), "PROFILE FRAG");
 
-                        Toast.makeText(getApplicationContext(), "you clicked profile", Toast.LENGTH_LONG).show();
-                        break;
+                    Toast.makeText(getApplicationContext(), "you clicked profile", Toast.LENGTH_LONG).show();
+                    break;
 
-                    case R.id.nav_rate:
-                        Toast.makeText(getApplicationContext(), "you clicked rate", Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.nav_share:
-                        Toast.makeText(getApplicationContext(), "you clicked share", Toast.LENGTH_LONG).show();
-                        break;
-                    case R.id.nav_logout:
-                        Toast.makeText(getApplicationContext(), "you clicked logout", Toast.LENGTH_LONG).show();
-                        break;
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + item.getItemId());
-                }
-                return true;
+                case R.id.nav_rate:
+                    Toast.makeText(getApplicationContext(), "you clicked rate", Toast.LENGTH_LONG).show();
+                    break;
+                case R.id.nav_share:
+                    Toast.makeText(getApplicationContext(), "you clicked share", Toast.LENGTH_LONG).show();
+                    break;
+                case R.id.nav_logout:
+                    Toast.makeText(getApplicationContext(), "you clicked logout", Toast.LENGTH_LONG).show();
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + item.getItemId());
             }
+            return true;
         });
     }
 
@@ -339,21 +319,5 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
             }
         });
-    }
-
-    private void geoLocate(String search_txt)
-    {
-        try
-        {
-            Geocoder geocoder = new Geocoder(MapActivity.this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocationName(search_txt, 1);
-            final String address = addresses.get(0).getAddressLine(0);
-
-            Toast.makeText(MapActivity.this, address, Toast.LENGTH_SHORT).show();
-            //openEnterLocationDialog(address);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
