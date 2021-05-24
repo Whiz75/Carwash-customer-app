@@ -58,7 +58,7 @@ public class ConfirmLocationDialogFragment extends DialogFragment {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_confirm_location_dialog, container, false);
         inti(viewGroup);
         CloseDialog(viewGroup);
-        //setLocation(viewGroup);
+        setLocation(viewGroup);
 
         return viewGroup;
     }

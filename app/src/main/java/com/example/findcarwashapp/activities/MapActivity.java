@@ -85,7 +85,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         GPSControl();
         getCurrentLocation();
         bottomSheetAnimation();
-        closeConfirmationDialog();
+        //closeConfirmationDialog();
         openEnterLocationDialog();
 
         if (ContextCompat.checkSelfPermission(MapActivity.this,
@@ -265,11 +265,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
     }
 
-    private void closeConfirmationDialog() {
+    private void closeConfirmationDialog(String location) {
 
         confirm_location_btn.setOnClickListener(v -> {
 
-            ConfirmLocationDialogFragment dialogFragment = new ConfirmLocationDialogFragment();
+            ConfirmLocationDialogFragment dialogFragment = new ConfirmLocationDialogFragment(location);
             dialogFragment.show(getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.left_in, R.anim.left_out), "CONFIRM LOCATION");
@@ -332,6 +332,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                     //set current location to edit text
                     Objects.requireNonNull(auto_pin_location.getEditText()).setText(address);
+                    closeConfirmationDialog(address);
 
                 } catch (Exception e) {
                     e.printStackTrace();

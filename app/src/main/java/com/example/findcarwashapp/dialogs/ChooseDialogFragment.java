@@ -4,21 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.findcarwashapp.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -73,43 +67,38 @@ public class ChooseDialogFragment extends DialogFragment {
         return view;
     }
 
-    private void init(ViewGroup view) {
-
+    private void init(ViewGroup view)
+    {
         tool_bar = view.findViewById(R.id.menu_toolbar);
         upload_menu_btn = view.findViewById(R.id.upload_menu_btn);
     }
 
     private void setUpToolBAr(ViewGroup view)
     {
-        tool_bar.setNavigationIcon(R.drawable.ic_close);
-        tool_bar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        context = view.getContext();
 
-                dismiss();
-            }
-        });
+        tool_bar.setNavigationIcon(R.drawable.ic_close);
+        tool_bar.setOnClickListener(v -> dismiss());
     }
 
     private void uploadMenu(ViewGroup view)
     {
-        upload_menu_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        upload_menu_btn.setOnClickListener(v -> {
 
-                @SuppressLint("ShowToast") Snackbar snackbar = Snackbar.make(v,"", Snackbar.LENGTH_LONG);
-                View view = getLayoutInflater().inflate(R.layout.success_snack_bar, null);
+            context = view.getContext();
 
-                snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-                Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
-                snackBarView.setPadding(0, 0, 0, 0);
+            @SuppressLint("ShowToast") Snackbar snackbar = Snackbar.make(v,"", Snackbar.LENGTH_LONG);
+            View view1 = getLayoutInflater().inflate(R.layout.success_snack_bar, null);
 
-                snackBarView.addView(view, 0);
-                snackbar.show();
+            snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
+            Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
+            snackBarView.setPadding(0, 0, 0, 0);
 
-                Toast.makeText(getActivity(), "it can here", Toast.LENGTH_LONG).show();
-                dismiss();
-            }
+            snackBarView.addView(view1, 0);
+            snackbar.show();
+
+            Toast.makeText(getActivity(), "it can here", Toast.LENGTH_LONG).show();
+            dismiss();
         });
     }
 }
