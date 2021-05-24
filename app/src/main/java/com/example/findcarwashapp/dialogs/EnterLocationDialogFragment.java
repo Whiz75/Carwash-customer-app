@@ -81,17 +81,31 @@ public class EnterLocationDialogFragment extends DialogFragment { ;
     {
         context = view.getContext();
 
-        String location_txt = search_location.getEditText().toString().trim();
-
         find_location_btn.setOnClickListener(v -> {
+
+            String location_txt = search_location.getEditText().getText().toString().trim();
 
             if (TextUtils.isEmpty(location_txt))
             {
                 Toast.makeText(context.getApplicationContext(),"Please enter location",Toast.LENGTH_LONG).show();
+                search_location.getEditText().setError("Please enter a location");
             }else
             {
-                geoLocate(location_txt);
-                dismiss();
+                try
+                {
+                    Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+                    List<Address> addresses = geocoder.getFromLocationName(location_txt, 1);
+                    final String address = addresses.get(0).getAddressLine(0);
+
+                    Toast.makeText(getActivity(), address, Toast.LENGTH_SHORT).show();
+                    dismiss();
+
+                    ConfirmLocationDialogFragment dialogFragment = new ConfirmLocationDialogFragment(address);
+                    dialogFragment.show(getFragmentManager().beginTransaction(), "CONFIRM LOCATION");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
         });
