@@ -1,7 +1,9 @@
 package com.example.findcarwashapp.dialogs;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +17,9 @@ import java.util.Objects;
 
 
 public class ProfileDialogFragment extends DialogFragment {
+
+    private Context context;
+    private AppCompatImageView close_dialog_img;
 
     public ProfileDialogFragment() {
         // Required empty public constructor
@@ -41,7 +46,23 @@ public class ProfileDialogFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_profile_dialog, container, false);
+        context = view.getContext();
+        //call methods here
+        init(view);
+        dialogControl(view);
 
         return view;
     }
+
+    private void init(ViewGroup view)
+    {
+        close_dialog_img = view.findViewById(R.id.ProfileImgClose);
+    }
+
+    private void dialogControl(ViewGroup view)
+    {
+        context = view.getContext();
+        close_dialog_img.setOnClickListener(v -> dismiss());
+    }
+
 }

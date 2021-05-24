@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 import com.example.findcarwashapp.R;
 import com.example.findcarwashapp.dialogs.ConfirmLocationDialogFragment;
 import com.example.findcarwashapp.dialogs.EnterLocationDialogFragment;
+import com.example.findcarwashapp.dialogs.ProfileDialogFragment;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationRequest;
@@ -239,6 +241,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         break;
 
                     case R.id.nav_profile:
+                        //call profile frag
+                        ProfileDialogFragment dialogFragment = new ProfileDialogFragment();
+                        dialogFragment.show(getSupportFragmentManager().beginTransaction(), "PROFILE FRAG");
+
                         Toast.makeText(getApplicationContext(), "you clicked profile", Toast.LENGTH_LONG).show();
                         break;
 
