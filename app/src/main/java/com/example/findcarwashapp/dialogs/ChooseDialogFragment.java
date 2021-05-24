@@ -92,7 +92,7 @@ public class ChooseDialogFragment extends DialogFragment {
 
             snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
             Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
-            snackBarView.setPadding(0, 0, 0, 0);
+            snackBarView.setPadding(0, 0, 0, 50);
 
             snackBarView.addView(view1, 0);
             snackbar.show();
