@@ -340,4 +340,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
     }
+
+    private void geoLocate(String search_txt)
+    {
+        try
+        {
+            Geocoder geocoder = new Geocoder(MapActivity.this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocationName(search_txt, 1);
+            final String address = addresses.get(0).getAddressLine(0);
+
+            Toast.makeText(MapActivity.this, address, Toast.LENGTH_SHORT).show();
+            //openEnterLocationDialog(address);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
