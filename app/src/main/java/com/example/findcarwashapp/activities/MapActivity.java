@@ -248,7 +248,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment("LOGGING USER OUT...");
+                            LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment("Logging user out...");
                             loadingDialogFragment.show(getSupportFragmentManager().beginTransaction(), "LOGOUT");
 
                             FirebaseAuth.getInstance().signOut();
@@ -260,6 +260,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             dialog.dismiss();
                         }
                     });
+                    builder.show();
+
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + item.getItemId());

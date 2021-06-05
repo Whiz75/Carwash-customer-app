@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.findcarwashapp.R;
 import com.example.findcarwashapp.dialogs.LoadingDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -17,7 +18,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //call methods here
         splashScreen();
-
     }
 
     private void splashScreen()
@@ -28,12 +28,18 @@ public class SplashScreenActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-
-                try {
+                try
+                {
                     Thread.sleep(3000);
-                    startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
-                    finish();
-
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null)
+                    {
+                        startActivity(new Intent(getApplicationContext(),MapActivity.class));
+                        finish();
+                    }else
+                    {
+                        startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
+                        finish();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

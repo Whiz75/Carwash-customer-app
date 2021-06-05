@@ -46,14 +46,4 @@ public class LoginSignupActivity extends AppCompatActivity implements FragmentCl
                 .replace(R.id.frag_host, frag, "SIGN UP FRAGMENT")
                 .commit();
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (FirebaseAuth.getInstance().getCurrentUser() != null)
-        {
-            startActivity(new Intent(getApplicationContext(),MapActivity.class));
-        }
-    }
 }
