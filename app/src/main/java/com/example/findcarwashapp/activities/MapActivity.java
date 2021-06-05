@@ -13,6 +13,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.example.findcarwashapp.R;
 import com.example.findcarwashapp.dialogs.ConfirmLocationDialogFragment;
 import com.example.findcarwashapp.dialogs.EnterLocationDialogFragment;
+import com.example.findcarwashapp.dialogs.LoadingDialogFragment;
 import com.example.findcarwashapp.dialogs.ProfileDialogFragment;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -45,8 +47,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 import java.util.Locale;
@@ -237,6 +241,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     break;
                 case R.id.nav_logout:
                     Toast.makeText(getApplicationContext(), "you clicked logout", Toast.LENGTH_LONG).show();
+                    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+                    builder.setTitle("LOGOUT");
+                    builder.setMessage("Are you sure you want to logout ?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment("LOGGING USER OUT...");
+                            loadingDialogFragment.show(getSupportFragmentManager().beginTransaction(), "LOGOUT");
+
+                            FirebaseAuth.getInstance().signOut();
+                            startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
+                        }
+                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + item.getItemId());

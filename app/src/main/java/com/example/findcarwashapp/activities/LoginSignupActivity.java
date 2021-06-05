@@ -2,12 +2,15 @@ package com.example.findcarwashapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.findcarwashapp.R;
 import com.example.findcarwashapp.fragments.LoginFragment;
 import com.example.findcarwashapp.fragments.SignUpFragment;
 import com.example.findcarwashapp.interfaces.FragmentClickInterface;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginSignupActivity extends AppCompatActivity implements FragmentClickInterface {
 
@@ -42,5 +45,15 @@ public class LoginSignupActivity extends AppCompatActivity implements FragmentCl
                 .setCustomAnimations(R.anim.right_in, R.anim.right_out)
                 .replace(R.id.frag_host, frag, "SIGN UP FRAGMENT")
                 .commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null)
+        {
+            startActivity(new Intent(getApplicationContext(),MapActivity.class));
+        }
     }
 }

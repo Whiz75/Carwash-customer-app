@@ -20,7 +20,7 @@
 
             <!--password textinput Edittext-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_password_txt"
+                android:id="@+id/input_first_name_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -39,13 +39,13 @@
 
             <!--lastname edittext-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/signup_lastname_txt"
+                android:id="@+id/input_last_name_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/login_password_txt"
+                android:layout_below="@id/input_first_name_txt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -59,13 +59,13 @@
 
             <!--user email edittext-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/signup_email_txt"
+                android:id="@+id/input_email_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/signup_lastname_txt"
+                android:layout_below="@id/input_last_name_txt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -79,13 +79,13 @@
 
             <!--user password edittext-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/signup_password_txt"
+                android:id="@+id/input_password_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@id/signup_email_txt"
+                android:layout_below="@id/input_email_txt"
                 app:passwordToggleEnabled="true"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -100,14 +100,14 @@
 
             <!--user confirm password edittext-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/signup_confirmpass_txt"
+                android:id="@+id/input_confirm_pass_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
                 app:passwordToggleEnabled="true"
-                android:layout_below="@id/signup_password_txt"
+                android:layout_below="@id/input_password_txt"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -133,7 +133,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:cornerRadius="6dp"
-                android:layout_below="@id/signup_confirmpass_txt"/>
+                android:layout_below="@id/input_confirm_pass_txt"/>
 
             <!--already have an account-->
 
