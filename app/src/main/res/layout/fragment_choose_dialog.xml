@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -39,12 +40,15 @@
         app:layout_anchorGravity="end|bottom"/>-->
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/items_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_anchorGravity="center|top"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="20dp"
-        android:padding="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/menu_top_app_bar"
+        app:elevation="3dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,49 +61,79 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="choose options"
+                android:text="choose options below"
                 android:textAllCaps="true"
+                android:paddingBottom="20dp"
+                android:layout_marginStart="20dp"
+                android:textStyle="bold"
+                app:fontFamily="@font/pragati_narrow_bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                />
+                tools:ignore="RtlSymmetry" />
+
             <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_full_wash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Full wash"
                 android:paddingStart="20dp"
-                android:textSize="24sp"
+                android:layout_marginStart="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:fontFamily="@font/pragati_narrow_bold"
                 tools:ignore="RtlSymmetry" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_exterior_wash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Exterior wash"
                 android:paddingStart="20dp"
-                android:textSize="24sp"
+                android:layout_marginStart="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:fontFamily="@font/pragati_narrow_bold"
                 tools:ignore="RtlSymmetry" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_interior_wash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Interior wash"
-                android:textSize="24sp"
                 android:paddingStart="20dp"
+                android:layout_marginStart="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:fontFamily="@font/pragati_narrow_bold"
                 tools:ignore="RtlSymmetry" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_extra_wash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="full wash"
                 android:paddingStart="20dp"
-                android:textSize="24sp"
+                android:layout_marginStart="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:fontFamily="@font/pragati_narrow_bold"
                 tools:ignore="RtlSymmetry" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disclaimer"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:textAllCaps="true"
+                app:fontFamily="@font/pragati_narrow_bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:ignore="RtlSymmetry" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Please make sure you check the areas your car washed"
+                android:textAllCaps="false"
+                android:layout_marginStart="20dp"
+                app:fontFamily="@font/pragati_narrow_bold"
+                tools:ignore="RtlSymmetry"
+                android:textSize="16sp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -109,8 +143,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="upload"
-            android:layout_gravity="bottom|right"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
             tools:ignore="RtlHardcoded" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

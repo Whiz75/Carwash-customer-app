@@ -15,6 +15,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class ChooseDialogFragment extends DialogFragment {
         // Required empty public constructor
     }
 
-    List<String> stringList;
+    List<String> stringList = new ArrayList<String>();
     public ChooseDialogFragment(List<String> stringList) {
         this.stringList = stringList;
     }
@@ -96,8 +97,6 @@ public class ChooseDialogFragment extends DialogFragment {
 
             snackBarView.addView(view1, 0);
             snackbar.show();
-
-            Toast.makeText(getActivity(), "it can here", Toast.LENGTH_LONG).show();
             dismiss();
         });
     }

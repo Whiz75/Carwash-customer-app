@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,69 +10,93 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="152dp"
-        app:elevation="0dp"
-        android:id="@+id/appBarLayout1">
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_top_app_bar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:theme="@style/Widget.MaterialComponents.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_toolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinate_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_top_app_bar">
 
         <RelativeLayout
+            android:id="@+id/coverImg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ProfileImgClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_close"/>
+            android:layout_height="250dp"
+            android:background="@color/dodger_blue">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/ProfileImgCover"
-                android:layout_marginBottom="5dp"/>
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                android:id="@+id/imgMenu"
+                android:src="@drawable/logo1"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profileImgInitial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/coverImg"
+            app:layout_anchorGravity="center|bottom"
+            android:foregroundGravity="top">
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/profileImg_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                >
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImg1"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:id="@+id/ProfileImage"
-                    android:src="@drawable/ic_account"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo1"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
+                    app:civ_circle_background_color="@color/white"
+                    app:civ_border_color="@color/dodger_blue"
+                    app:civ_border_width="1dp"
                     />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/select_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_camera"
+                    app:srcCompat="@drawable/ic_add"
                     tools:ignore="ContentDescription"
-                    android:backgroundTint="@color/white"
-                    app:layout_anchor="@id/ProfileImage"
-                    app:layout_anchorGravity="end|bottom" />
-
+                    app:layout_anchor="@id/profileImg1"
+                    app:layout_anchorGravity="end|bottom"/>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </RelativeLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="UselessLeaf"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:layout_below="@id/coordinate_parent"
+        >
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/profile_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -125,5 +150,4 @@
             android:layout_marginTop="20dp"
             android:text="update" />
     </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

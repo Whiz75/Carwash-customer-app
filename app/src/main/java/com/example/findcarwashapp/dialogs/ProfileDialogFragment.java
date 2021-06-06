@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.findcarwashapp.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public class ProfileDialogFragment extends DialogFragment {
 
     private Context context;
     private AppCompatImageView close_dialog_img;
+    private MaterialToolbar tool_bar;
 
     public ProfileDialogFragment() {
         // Required empty public constructor
@@ -56,13 +58,21 @@ public class ProfileDialogFragment extends DialogFragment {
 
     private void init(ViewGroup view)
     {
-        close_dialog_img = view.findViewById(R.id.ProfileImgClose);
+        tool_bar = view.findViewById(R.id.menu_toolbar);
+        //close_dialog_img = view.findViewById(R.id.ProfileImgClose);
     }
 
     private void dialogControl(ViewGroup view)
     {
         context = view.getContext();
-        close_dialog_img.setOnClickListener(v -> dismiss());
+        tool_bar.setNavigationIcon(R.drawable.ic_close);
+
+        tool_bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 
 }
