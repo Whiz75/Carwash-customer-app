@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +9,8 @@
     android:id="@+id/bottomsheet_cv"
     app:behavior_hideable="false"
     app:behavior_peekHeight="auto"
-    app:elevation="3dp">
+    app:elevation="3dp"
+    style="@style/Animation.Design.BottomSheetDialog">
 
         <!--parent layout-->
         <RelativeLayout
@@ -27,7 +29,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="5dp"
                     android:drawablePadding="5dp"
-                    app:drawableTint="@color/green" />
+                    app:drawableTint="@color/green"
+                    tools:ignore="HardcodedText" />
 
                 <!--enter location text input layout-->
                 <com.google.android.material.textfield.TextInputLayout
@@ -37,7 +40,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     app:boxStrokeColor="@color/gray"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_below="@id/packed_text"
                     android:elevation="3dp">
 
@@ -51,7 +54,8 @@
                             android:fontFamily="@font/pragati_narrow_regular"
                             android:drawableStart="@drawable/ic_person_pin"
                             android:drawablePadding="10dp"
-                            android:drawableTint="@color/slate_gray"/>
+                            android:drawableTint="@color/slate_gray"
+                            tools:ignore="HardcodedText" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <!--text view to display the location coordinates-->
                 <TextView
@@ -65,7 +69,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_below="@id/auto_location_address"
-                    app:drawableStartCompat="@drawable/ic_person_pin_circle" />
+                    app:drawableStartCompat="@drawable/ic_person_pin_circle"
+                    tools:ignore="HardcodedText" />
 
                 <!--confirm initial location button-->
                 <com.google.android.material.button.MaterialButton
@@ -83,7 +88,8 @@
                     style="@style/Widget.MaterialComponents.Button"
                     android:textColor="@color/black"
                     app:cornerRadius="5dp"
-                    android:layout_alignParentEnd="true"/>
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="HardcodedText" />
 
                 <!--choose another location button-->
                 <com.google.android.material.button.MaterialButton
@@ -99,6 +105,7 @@
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="5dp"
                     app:cornerRadius="5dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
         </RelativeLayout>
 </androidx.cardview.widget.CardView>

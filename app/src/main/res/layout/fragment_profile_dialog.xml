@@ -25,38 +25,24 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinate_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/menu_top_app_bar">
+        android:layout_height="250dp"
+        android:layout_below="@id/menu_top_app_bar"
+        android:background="@color/dodger_blue">
 
-        <RelativeLayout
-            android:id="@+id/coverImg"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgMenu"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="@color/dodger_blue">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="20dp"
-                android:scaleType="centerCrop"
-                android:id="@+id/imgMenu"
-                android:src="@drawable/logo1"
-                />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/profileImgInitial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_anchor="@id/coverImg"
-            app:layout_anchorGravity="center|bottom"
-            android:foregroundGravity="top">
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo1" />
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/profileImg_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                app:layout_anchor="@id/imgMenu"
+                app:layout_anchorGravity="center|bottom"
                 >
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -66,7 +52,6 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/logo1"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
                     app:civ_circle_background_color="@color/white"
                     app:civ_border_color="@color/dodger_blue"
                     app:civ_border_width="1dp"
@@ -81,7 +66,6 @@
                     app:layout_anchor="@id/profileImg1"
                     app:layout_anchorGravity="end|bottom"/>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
-        </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <LinearLayout

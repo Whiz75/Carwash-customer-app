@@ -11,7 +11,30 @@
         android:id="@+id/welcome_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
+        android:src="@drawable/logo1"
         android:layout_centerInParent="true"
+        />
+
+    <!--<com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mr. Splash car wash"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_above="@id/version_no_text"
+        android:layout_marginBottom="250dp"
+        />-->
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/version_no_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_version_text"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
         />
 </RelativeLayout>

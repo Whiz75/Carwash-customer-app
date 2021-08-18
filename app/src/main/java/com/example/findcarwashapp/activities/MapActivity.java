@@ -13,13 +13,12 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -56,6 +55,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+@SuppressWarnings("deprecation")
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private MaterialToolbar toolbar;
@@ -148,6 +148,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         results.addOnCompleteListener(task -> {
             try {
                 LocationSettingsResponse response = task.getResult(ApiException.class);
+                response.getLocationSettingsStates();
+
                 Toast.makeText(getApplicationContext(), "GPS location is turned On", Toast.LENGTH_LONG).show();
 
             } catch (ApiException e) {
@@ -229,8 +231,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     //call profile frag
                     ProfileDialogFragment dialogFragment = new ProfileDialogFragment();
                     dialogFragment.show(getSupportFragmentManager().beginTransaction(), "PROFILE FRAG");
-
-                    Toast.makeText(getApplicationContext(), "you clicked profile", Toast.LENGTH_LONG).show();
                     break;
 
                 case R.id.nav_rate:
@@ -244,22 +244,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
                     builder.setTitle("LOGOUT");
                     builder.setMessage("Are you sure you want to logout ?");
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                    builder.setPositiveButton("Yes", (dialog, which) -> {
 
-                            LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment("Logging user out...");
-                            loadingDialogFragment.show(getSupportFragmentManager().beginTransaction(), "LOGOUT");
+                        LoadingDialogFragment loadingDialogFragment = new LoadingDialogFragment("Logging user out...");
+                        loadingDialogFragment.show(getSupportFragmentManager().beginTransaction(), "LOGOUT");
 
-                            FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
-                        }
-                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
+                    }).setNegativeButton("No", (dialog, which) -> dialog.dismiss());
                     builder.show();
 
                     break;
@@ -310,38 +302,33 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mGoogleMap.setMyLocationEnabled(true);
         mGoogleMap.setBuildingsEnabled(true);
         mGoogleMap.getUiSettings().setZoomGesturesEnabled(true);
-        mGoogleMap.getUiSettings().isMapToolbarEnabled();
 
-        mGoogleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @SuppressLint("MissingPermission")
-            @Override
-            public void onMyLocationChange(Location location) {
-                LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
-                MarkerOptions markerOptions = new MarkerOptions();
+        mGoogleMap.setOnMyLocationChangeListener(location -> {
+            LatLng latlng = new LatLng(location.getLatitude(), location.getLongitude());
+            MarkerOptions markerOptions = new MarkerOptions();
 
-                markerOptions.position(latlng);
-                markerOptions.title("My Location");
-                mGoogleMap.clear();
+            markerOptions.position(latlng);
+            markerOptions.title("My Location");
+            mGoogleMap.clear();
 
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 17);
-                mGoogleMap.animateCamera(cameraUpdate);
-                mGoogleMap.addMarker(markerOptions);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 17);
+            mGoogleMap.animateCamera(cameraUpdate);
+            mGoogleMap.addMarker(markerOptions);
 
-                try {
-                    Geocoder geocoder = new Geocoder(MapActivity.this, Locale.getDefault());
-                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                    final String address = addresses.get(0).getAddressLine(0);
+            try {
+                Geocoder geocoder = new Geocoder(MapActivity.this, Locale.getDefault());
+                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                final String address = addresses.get(0).getAddressLine(0);
 
-                    mGoogleMap.setMyLocationEnabled(true);
-                    mGoogleMap.getUiSettings().setZoomGesturesEnabled(true);
+                mGoogleMap.setMyLocationEnabled(true);
+                mGoogleMap.getUiSettings().setZoomGesturesEnabled(true);
 
-                    //set current location to edit text
-                    Objects.requireNonNull(auto_pin_location.getEditText()).setText(address);
-                    closeConfirmationDialog(address);
+                //set current location to edit text
+                Objects.requireNonNull(auto_pin_location.getEditText()).setText(address);
+                closeConfirmationDialog(address);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }

@@ -7,7 +7,7 @@
 
     <!--Api key-->
     <string name="key" tools:ignore="Typos">AIzaSyDMf1J05oglGELWpCi3O03V9YSujs8ld4g</string>
-    <string name="API_KEY" tools:ignore="Typos">AIzaSyAG9H5qaSHLkcEzX9E13ts8osbabXV-Jpg</string>
+    <string name="API_KEY" tools:ignore="Typos">AIzaSyBtQcQm3xHw70aPqVwDL-SM4fjXBkzmmyY</string>
     <string name="disclaimer_text">Disclaimer</string>
     <string name="choose_options_below_text">choose options below</string>
     <string name="full_wash_text">Full wash</string>
@@ -15,5 +15,6 @@
     <string name="interior_wash_text">Interior wash</string>
     <string name="disclaimer_message_text">*Please make sure you check the areas your car washed</string>
     <string name="upload_text">upload</string>
-    <string name="extra_text">full wash</string>
+    <string name="tyre_wax_text">Tyre wax</string>
+    <string name="app_version_text">Version 1.0.0</string>
 </resources>

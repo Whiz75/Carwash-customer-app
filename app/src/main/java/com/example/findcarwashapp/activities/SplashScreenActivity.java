@@ -22,8 +22,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void splashScreen()
     {
-        LoadingDialogFragment dialogFragment = new LoadingDialogFragment("loading...please wait");
-        dialogFragment.show(getSupportFragmentManager().beginTransaction(), "LOADING");
+        /*LoadingDialogFragment dialogFragment = new LoadingDialogFragment("loading...please wait");
+        dialogFragment.show(getSupportFragmentManager().beginTransaction(), "LOADING");*/
 
         Thread thread = new Thread(new Runnable() {
             @Override
