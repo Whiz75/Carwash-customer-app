@@ -50,21 +50,6 @@
         app:cardElevation="3dp"
         >
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.ChipGroup">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/full_wash_chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/full_wash_text"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                />
-        </com.google.android.material.chip.ChipGroup>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +70,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 tools:ignore="RtlSymmetry" />
 
-            <com.google.android.material.checkbox.MaterialCheckBox
+            <!--<com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/item_full_wash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,8 +113,59 @@
                 android:layout_marginStart="20dp"
                 android:textAppearance="?attr/textAppearancePopupMenuHeader"
                 android:fontFamily="@font/pragati_narrow_bold"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry" />-->
 
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.ChipGroup"
+                android:layout_marginStart="20dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/full_wash_chip"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Full wash"
+                        android:theme="@style/Theme.MaterialComponents.DayNight" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/exterior_chip"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Exterior wash"
+                        android:theme="@style/Theme.MaterialComponents.Light" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/interior_chip"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Interior wash"
+                        android:theme="@style/Theme.MaterialComponents.Light" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/tyre_chip"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:text="Tyre wash"
+                        android:theme="@style/Theme.MaterialComponents.Light" />
+                </LinearLayout>
+            </com.google.android.material.chip.ChipGroup>
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

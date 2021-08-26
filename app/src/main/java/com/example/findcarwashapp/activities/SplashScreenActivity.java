@@ -20,29 +20,22 @@ public class SplashScreenActivity extends AppCompatActivity {
         splashScreen();
     }
 
-    private void splashScreen()
-    {
+    private void splashScreen() {
         /*LoadingDialogFragment dialogFragment = new LoadingDialogFragment("loading...please wait");
         dialogFragment.show(getSupportFragmentManager().beginTransaction(), "LOADING");*/
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try
-                {
-                    Thread.sleep(3000);
-                    if (FirebaseAuth.getInstance().getCurrentUser() != null)
-                    {
-                        startActivity(new Intent(getApplicationContext(),MapActivity.class));
-                        finish();
-                    }else
-                    {
-                        startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
-                        finish();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    Intent map = new Intent(getApplicationContext(),MapActivity.class);
+                    startActivity(map);
+                }else {
+                    Intent intent = new Intent(getApplicationContext(),LoginSignupActivity.class);
+                    startActivity(intent);
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }); thread.start();
     }
