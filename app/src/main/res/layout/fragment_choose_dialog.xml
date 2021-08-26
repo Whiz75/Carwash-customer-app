@@ -136,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Full wash"
-                        android:theme="@style/Theme.MaterialComponents.DayNight" />
+                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/exterior_chip"
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Exterior wash"
-                        android:theme="@style/Theme.MaterialComponents.Light" />
+                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/interior_chip"
@@ -154,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Interior wash"
-                        android:theme="@style/Theme.MaterialComponents.Light" />
+                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/tyre_chip"
@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Tyre wash"
-                        android:theme="@style/Theme.MaterialComponents.Light" />
+                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
                 </LinearLayout>
             </com.google.android.material.chip.ChipGroup>
             <com.google.android.material.textview.MaterialTextView

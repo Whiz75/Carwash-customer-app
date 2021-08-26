@@ -1,13 +1,10 @@
 package com.example.findcarwashapp.dialogs;
 
-import static com.google.firebase.firestore.FirebaseFirestore.getInstance;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import android.text.TextUtils;
@@ -15,18 +12,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.CompoundButton;
 import android.widget.Toast;
+
+import com.cazaea.sweetalert.SweetAlertDialog;
 import com.example.findcarwashapp.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipDrawable;
-import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,22 +26,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class ChooseDialogFragment extends DialogFragment {
 
     private Context context;
     private MaterialToolbar tool_bar;
-
-    private MaterialCheckBox item_full, item_exterior, item_interior,item_extra;
     private MaterialButton upload_menu_btn;
 
     public ChooseDialogFragment() {
         // Required empty public constructor
     }
 
-    List<String> stringList = new ArrayList<String>();
+    List<String> stringList = new ArrayList<>();
     public ChooseDialogFragment(List<String> stringList) {
         this.stringList = stringList;
     }
@@ -103,7 +92,7 @@ public class ChooseDialogFragment extends DialogFragment {
 
     private void setUpChips(ViewGroup view) {
         context = view.getContext();
-        ChipGroup chipGroup = view.findViewById(R.id.chip_group);
+        //ChipGroup chipGroup = view.findViewById(R.id.chip_group);
 
         Chip full_chip = view.findViewById(R.id.full_wash_chip);
         Chip interior_chip = view.findViewById(R.id.interior_chip);
@@ -192,14 +181,24 @@ public class ChooseDialogFragment extends DialogFragment {
                     HashMap<String,Object> request = new HashMap<>();
                     request.put("preference",menuItems);
 
+
+                    final SweetAlertDialog dlg = new SweetAlertDialog(view.getContext(), SweetAlertDialog.PROGRESS_TYPE);
+                    dlg.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    dlg.setTitleText("Loading");
+                    dlg.setCancelable(false);
+                    dlg.show();
+
                     FirebaseFirestore
                             .getInstance()
                             .collection("Requests")
-                            .document(FirebaseAuth.getInstance().getUid())
+                            .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
                             .set(request)
                             .addOnSuccessListener(unused -> {
+
+                                dlg.cancel();
                                 @SuppressLint("ShowToast")
                                 Snackbar snackbar = Snackbar.make(v,"", Snackbar.LENGTH_LONG);
+                                @SuppressLint("InflateParams")
                                 View view1 = getLayoutInflater().inflate(R.layout.success_snack_bar, null);
 
                                 snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
