@@ -196,6 +196,10 @@ public class ChooseDialogFragment extends DialogFragment {
                             .addOnSuccessListener(unused -> {
 
                                 dlg.cancel();
+                                //dialog to display selected item
+                                ConfirmSelectionsDialogFragment fragment = new ConfirmSelectionsDialogFragment(menuItems);
+                                fragment.show(getChildFragmentManager().beginTransaction(),"CONFIRM SELECTION");
+
                                 @SuppressLint("ShowToast")
                                 Snackbar snackbar = Snackbar.make(v,"", Snackbar.LENGTH_LONG);
                                 @SuppressLint("InflateParams")

@@ -13,9 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.findcarwashapp.R;
-import com.example.findcarwashapp.activities.MapActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -28,7 +26,6 @@ public class EnterLocationDialogFragment extends DialogFragment { ;
     private MaterialButton find_location_btn;
     private AppCompatImageView close_dialog_iv;
     private TextInputLayout search_location;
-
     Context context;
 
     public EnterLocationDialogFragment() {
@@ -36,7 +33,6 @@ public class EnterLocationDialogFragment extends DialogFragment { ;
     }
 
     String location;
-
     public EnterLocationDialogFragment(String location) {
         this.location = location;
     }
@@ -77,22 +73,19 @@ public class EnterLocationDialogFragment extends DialogFragment { ;
         search_location = viewGroup.findViewById(R.id.search_location_til);
     }
 
-    private void findLocation(ViewGroup view)
-    {
+    private void findLocation(ViewGroup view) {
         context = view.getContext();
 
         find_location_btn.setOnClickListener(v -> {
 
-            String location_txt = search_location.getEditText().getText().toString().trim();
+            String location_txt = Objects.requireNonNull(search_location.getEditText())
+                    .getText().toString().trim();
 
-            if (TextUtils.isEmpty(location_txt))
-            {
+            if (TextUtils.isEmpty(location_txt)) {
                 Toast.makeText(context.getApplicationContext(),"Please enter location",Toast.LENGTH_LONG).show();
                 search_location.getEditText().setError("Please enter a location");
-            }else
-            {
-                try
-                {
+            }else {
+                try {
                     Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                     List<Address> addresses = geocoder.getFromLocationName(location_txt, 1);
                     final String address = addresses.get(0).getAddressLine(0);
@@ -113,10 +106,8 @@ public class EnterLocationDialogFragment extends DialogFragment { ;
         close_dialog_iv.setOnClickListener(v -> dismiss());
     }
 
-    private void geoLocate(String search_txt)
-    {
-        try
-        {
+    private void geoLocate(String search_txt) {
+        try {
             Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocationName(search_txt, 1);
             final String address = addresses.get(0).getAddressLine(0);

@@ -96,16 +96,16 @@
                     android:id="@+id/enter_location_btn"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="Enter location"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/teko_regular"
                     android:layout_below="@id/last_searched_tv"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_marginTop="5dp"
-                    app:cornerRadius="5dp"
+                    android:fontFamily="@font/teko_regular"
+                    android:text="Enter location"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:cornerRadius="5dp"
                     tools:ignore="HardcodedText" />
         </RelativeLayout>
 </androidx.cardview.widget.CardView>

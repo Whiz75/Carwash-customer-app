@@ -2,34 +2,39 @@ package com.example.findcarwashapp.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.example.findcarwashapp.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class ConfirmLocationDialogFragment extends DialogFragment {
+public class ConfirmSelectionsDialogFragment extends DialogFragment {
 
     private MaterialButton close_btn;
     private ImageView close_dialog;
-    private MaterialTextView location_tv;
+    private ChipGroup chipGroup;
     Context context;
 
-    public ConfirmLocationDialogFragment() {
+    public ConfirmSelectionsDialogFragment() {
         // Required empty public constructor
     }
 
-    String location;
-    public ConfirmLocationDialogFragment(String location) {
-        this.location = location;
+    List<String> selectionItems = new ArrayList<>();
+    public ConfirmSelectionsDialogFragment(List<String> selectionItems) {
+        this.selectionItems = selectionItems;
     }
 
     @Override
@@ -54,23 +59,21 @@ public class ConfirmLocationDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_confirm_location_dialog, container, false);
+        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_confirm_selections_dialog, container, false);
         inti(viewGroup);
         CloseDialog(viewGroup);
-        setLocation(viewGroup);
+        setSelectedItems(viewGroup);
 
         return viewGroup;
     }
 
-    private void inti(ViewGroup view)
-    {
+    private void inti(ViewGroup view) {
         close_dialog = view.findViewById(R.id.confirm_location_dialog_cancel);
         close_btn = view.findViewById(R.id.close_btn);
-        location_tv = view.findViewById(R.id.confirmLocationAddress_tv);
+        chipGroup = view.findViewById(R.id.confirm_selections_cg);
     }
 
-    private void CloseDialog(ViewGroup view)
-    {
+    private void CloseDialog(ViewGroup view) {
         context = view.getContext();
 
         close_btn.setOnClickListener(v -> {
@@ -83,9 +86,20 @@ public class ConfirmLocationDialogFragment extends DialogFragment {
         close_dialog.setOnClickListener(v -> dismiss());
     }
 
-    private void setLocation(ViewGroup view)
-    {
+    private void setSelectedItems(ViewGroup view) {
         context = view.getContext();
-        location_tv.setText(location);
+
+        Chip chip = new Chip(Objects.requireNonNull(getContext()));
+                ChipDrawable drawable = ChipDrawable.createFromAttributes(getContext(),
+                        null, 0, R.style.Widget_MaterialComponents_Chip_Entry);
+
+        chip.setChipDrawable(drawable);
+
+        for (int i = 0; i <selectionItems.size(); i++) {
+            chip.setText(selectionItems.get(i));
+        }
+        chipGroup.addView(chip);
+
+        Toast.makeText(getContext(), selectionItems.toString(), Toast.LENGTH_SHORT).show();
     }
 }

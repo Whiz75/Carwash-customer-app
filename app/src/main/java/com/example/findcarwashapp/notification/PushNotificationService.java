@@ -1,22 +1,24 @@
-package com.example.findcarwashapp;
+package com.example.findcarwashapp.notification;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
-import android.app.Service;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
-
+import com.example.findcarwashapp.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import android.app.NotificationManager;
 
+import java.util.Objects;
+
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class PushNotificationService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
 
-        String title = remoteMessage.getNotification().getTitle();
+        String title = Objects.requireNonNull(remoteMessage.getNotification()).getTitle();
         String message = remoteMessage.getNotification().getBody();
         String Channel_id = "Heads up notification";
 

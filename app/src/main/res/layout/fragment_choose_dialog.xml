@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/choose_options_below_text"
                 android:textAllCaps="true"
-                android:paddingBottom="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginStart="20dp"
                 android:textStyle="bold"
                 app:fontFamily="@font/pragati_narrow_bold"
@@ -136,7 +136,9 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Full wash"
-                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
+                        android:theme="@style/Theme.MaterialComponents.Light"
+                        tools:ignore="HardcodedText"
+                        />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/exterior_chip"
@@ -145,7 +147,8 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Exterior wash"
-                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
+                        android:theme="@style/Theme.MaterialComponents.Light"
+                        tools:ignore="HardcodedText" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/interior_chip"
@@ -154,7 +157,8 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Interior wash"
-                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
+                        android:theme="@style/Theme.MaterialComponents.Light"
+                        tools:ignore="HardcodedText" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/tyre_chip"
@@ -163,16 +167,17 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Tyre wash"
-                        android:theme="@style/Theme.MaterialComponents.Light.Bridge" />
+                        android:theme="@style/Theme.MaterialComponents.Light"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
             </com.google.android.material.chip.ChipGroup>
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/disclaimer_text"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
-                android:textAllCaps="true"
                 app:fontFamily="@font/pragati_narrow_bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 tools:ignore="RtlSymmetry" />
@@ -190,14 +195,16 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/upload_menu_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/upload_text"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            tools:ignore="RtlHardcoded" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/upload_menu_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/upload_text"
+        android:textColor="@color/black"
+        android:fontFamily="@font/teko_regular"
+        tools:ignore="RtlHardcoded" />
 </RelativeLayout>
