@@ -1,11 +1,9 @@
 package com.example.findcarwashapp.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
@@ -18,17 +16,11 @@ import com.cazaea.sweetalert.SweetAlertDialog;
 import com.example.findcarwashapp.R;
 import com.example.findcarwashapp.activities.MapActivity;
 import com.example.findcarwashapp.interfaces.FragmentClickInterface;
-import com.example.findcarwashapp.model.User;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.findcarwashapp.model.UserModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Objects;
 
 
 public class SignUpFragment extends Fragment {
@@ -134,7 +126,7 @@ public class SignUpFragment extends Fragment {
                                 String uid = auth.getUid();
 
                                 //User model instance
-                                User user = new User();
+                                UserModel user = new UserModel();
                                 user.setId(uid);
                                 user.setName(name);
                                 user.setLastName(lastName);

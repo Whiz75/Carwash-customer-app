@@ -89,17 +89,30 @@ public class ConfirmSelectionsDialogFragment extends DialogFragment {
     private void setSelectedItems(ViewGroup view) {
         context = view.getContext();
 
-        Chip chip = new Chip(Objects.requireNonNull(getContext()));
-                ChipDrawable drawable = ChipDrawable.createFromAttributes(getContext(),
-                        null, 0, R.style.Widget_MaterialComponents_Chip_Entry);
-
-        chip.setChipDrawable(drawable);
-
-        for (int i = 0; i <selectionItems.size(); i++) {
-            chip.setText(selectionItems.get(i));
-        }
-        chipGroup.addView(chip);
-
+        //display items in the list
         Toast.makeText(getContext(), selectionItems.toString(), Toast.LENGTH_SHORT).show();
+
+        chipGroup.removeAllViews();
+        for (int i = 0; i <selectionItems.size(); i++) {
+            Chip chip = (Chip) LayoutInflater.from(context).inflate(R.layout.chip_item,null,false);
+            chip.setText(selectionItems.get(i));
+
+            chipGroup.addView(chip);
+        }
+
+        //test this
+        /*try {
+            chipGroup.removeAllViews();
+            LayoutInflater inflate = LayoutInflater.from(getContext());
+
+            for (int i = 0; i <selectionItems.size(); i++){
+                Chip chip1 = (Chip) inflate.inflate(R.layout.chip_item,null,false);
+
+                chip1.setText(selectionItems.get(i));
+                chipGroup.addView(chip1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 }

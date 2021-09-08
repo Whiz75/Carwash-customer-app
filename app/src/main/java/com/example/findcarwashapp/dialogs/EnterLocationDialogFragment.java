@@ -90,11 +90,24 @@ public class EnterLocationDialogFragment extends DialogFragment { ;
                     List<Address> addresses = geocoder.getFromLocationName(location_txt, 1);
                     final String address = addresses.get(0).getAddressLine(0);
 
-                    Toast.makeText(getActivity(), address, Toast.LENGTH_SHORT).show();
-                    dismiss();
+                    double lat = addresses.get(0).getLatitude();
+                    double lon = addresses.get(0).getLongitude();
 
-                    ConfirmLocationDialogFragment dialogFragment = new ConfirmLocationDialogFragment(address);
-                    dialogFragment.show(Objects.requireNonNull(getFragmentManager()).beginTransaction(), "CONFIRM LOCATION");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("lan",String.valueOf(lon));
+                    bundle.putString("lat",String.valueOf(lat));
+                    bundle.putString("place",address);
+
+                    if (address != null){
+                        //Toast.makeText(getActivity(), String.format("%s %s",String.valueOf(lat),String.valueOf(lon),null), Toast.LENGTH_SHORT).show();
+                        dismiss();
+
+                        ConfirmLocationDialogFragment dialogFragment = new ConfirmLocationDialogFragment(address);
+                        dialogFragment.setArguments(bundle);
+                        dialogFragment.show(Objects.requireNonNull(getFragmentManager()).beginTransaction(), "CONFIRM LOCATION");
+                    }else {
+                        Toast.makeText(getActivity(), "Loaction not found!!!", Toast.LENGTH_SHORT).show();
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();

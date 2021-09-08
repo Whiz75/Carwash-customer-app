@@ -2,34 +2,25 @@ package com.example.findcarwashapp.model;
 
 import java.util.List;
 
-public class Request {
+public class RequestModel {
     String id;
     String userId;
-    String date;
-    String requester;
     String location;
     String longitude;
     String latitude;
-    String profile;
-    Boolean status;
     List<String> items;
 
-    public Request() {
+    public RequestModel() {
         //empty constructor
     }
 
-    public Request(String id, String userId, String date, String requester,
-                   String location, String longitude, String latitude, String profile,
-                   Boolean status, List<String> items) {
+    public RequestModel(String id, String userId,
+                        String location, String longitude, String latitude, List<String> items) {
         this.id = id;
         this.userId = userId;
-        this.date = date;
-        this.requester = requester;
         this.location = location;
         this.longitude = longitude;
         this.latitude = latitude;
-        this.profile = profile;
-        this.status = status;
         this.items = items;
     }
 
@@ -47,22 +38,6 @@ public class Request {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getRequester() {
-        return requester;
-    }
-
-    public void setRequester(String requester) {
-        this.requester = requester;
     }
 
     public String getLocation() {
@@ -87,22 +62,6 @@ public class Request {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
-    }
-
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String profile) {
-        this.profile = profile;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 
     public List<String> getItems() {

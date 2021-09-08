@@ -49,6 +49,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -262,19 +263,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
     }
 
-    private void closeConfirmationDialog(String location) {
+    private void closeConfirmationDialog(String location, String lang, String lat) {
 
         confirm_location_btn.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("lan", lang);
+            bundle.putString("lat", lat);
+            bundle.putString("place",location);
 
             ConfirmLocationDialogFragment dialogFragment = new ConfirmLocationDialogFragment(location);
+            dialogFragment.setArguments(bundle);
             dialogFragment.show(getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.left_in, R.anim.left_out), "CONFIRM LOCATION");
         });
     }
 
-    private void openEnterLocationDialog()
-    {
+    private void openEnterLocationDialog() {
         enter_location_btn.setOnClickListener(v -> {
 
             EnterLocationDialogFragment dialogFragment =  new EnterLocationDialogFragment();
@@ -283,8 +288,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         });
     }
 
-    private void bottomSheetAnimation()
-    {
+    private void bottomSheetAnimation() {
         float v = 0;
         int y = 600;
 
@@ -325,7 +329,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 //set current location to edit text
                 Objects.requireNonNull(auto_pin_location.getEditText()).setText(address);
-                closeConfirmationDialog(address);
+
+                MaterialTextView coordinates_tv = findViewById(R.id.last_searched_tv);
+                coordinates_tv.setText(String.format("%s, %s",location.getLongitude(),location.getLatitude(),null));
+
+                //call confirm dialog
+                closeConfirmationDialog(address,String.valueOf(location.getLongitude()),String.valueOf(location.getLatitude()));
 
             } catch (Exception e) {
                 e.printStackTrace();

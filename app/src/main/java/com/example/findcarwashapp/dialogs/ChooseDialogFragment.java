@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import android.text.TextUtils;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.example.findcarwashapp.R;
+import com.example.findcarwashapp.model.RequestModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
@@ -178,9 +182,8 @@ public class ChooseDialogFragment extends DialogFragment {
                 if (menuItems.size() > 0) {
                     Toast.makeText(getContext(),menuItems.toString(),Toast.LENGTH_LONG).show();
 
-                    HashMap<String,Object> request = new HashMap<>();
-                    request.put("preference",menuItems);
-
+                    ConfirmSelectionsDialogFragment fragment = new ConfirmSelectionsDialogFragment(menuItems);
+                    fragment.show(getChildFragmentManager().beginTransaction(),"CONFIRMATION");
 
                     final SweetAlertDialog dlg = new SweetAlertDialog(view.getContext(), SweetAlertDialog.PROGRESS_TYPE);
                     dlg.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -188,31 +191,50 @@ public class ChooseDialogFragment extends DialogFragment {
                     dlg.setCancelable(false);
                     dlg.show();
 
-                    FirebaseFirestore
-                            .getInstance()
-                            .collection("Requests")
-                            .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                            .set(request)
-                            .addOnSuccessListener(unused -> {
+                    Bundle bundle = this.getArguments();
 
-                                dlg.cancel();
-                                //dialog to display selected item
-                                ConfirmSelectionsDialogFragment fragment = new ConfirmSelectionsDialogFragment(menuItems);
-                                fragment.show(getChildFragmentManager().beginTransaction(),"CONFIRM SELECTION");
+                    if(bundle != null){
+                        // handle your code here.
+                        String lan = bundle.getString("lan");
+                        String lat = bundle.getString("lat");
+                        String place = bundle.getString("place");
 
-                                @SuppressLint("ShowToast")
-                                Snackbar snackbar = Snackbar.make(v,"", Snackbar.LENGTH_LONG);
-                                @SuppressLint("InflateParams")
-                                View view1 = getLayoutInflater().inflate(R.layout.success_snack_bar, null);
+                        Toast.makeText(getContext(),String.format("%s, %s",lan, lat,null),Toast.LENGTH_LONG).show();
 
-                                snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-                                Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
-                                snackBarView.setPadding(0, 0, 0, 50);
+                        //set the long and lang to entity
+                        RequestModel requestModel = new RequestModel();
+                        requestModel.setUserId(FirebaseAuth.getInstance().getUid());
+                        requestModel.setLocation(place);
+                        requestModel.setLatitude(lat);
+                        requestModel.setLongitude(lan);
+                        requestModel.setItems(menuItems);
 
-                                snackBarView.addView(view1, 0);
-                                snackbar.show();
-                            }).addOnFailureListener(e ->
-                            Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show());
+                        FirebaseFirestore
+                                .getInstance()
+                                .collection("Requests")
+                                .document()
+                                .set(requestModel)
+                                .addOnSuccessListener(unused -> {
+                                    dlg.cancel();
+
+                                    @SuppressLint("ShowToast")
+                                    Snackbar snackbar = Snackbar.make(v,"", Snackbar.LENGTH_LONG);
+                                    @SuppressLint("InflateParams")
+                                    View view1 = getLayoutInflater().inflate(R.layout.success_snack_bar, null);
+
+                                    snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
+                                    Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
+                                    snackBarView.setPadding(0, 0, 0, 50);
+
+                                    snackBarView.addView(view1, 0);
+                                    snackbar.show();
+
+                                }).addOnFailureListener(e ->
+                                Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show());
+
+                    }else {
+                        Toast.makeText(getContext(),"Longitude & Latitude are empty!!!",Toast.LENGTH_LONG).show();
+                    }
                 }
             }catch (Exception e) {
                 Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show();
