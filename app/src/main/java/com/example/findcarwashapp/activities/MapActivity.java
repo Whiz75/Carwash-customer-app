@@ -114,8 +114,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         bottom_sheet_cv = findViewById(R.id.bottomsheet_cv);
     }
 
-    private void requestLocationPermission()
-    {
+    private void requestLocationPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION)) {
             new AlertDialog.Builder(this)
@@ -132,8 +131,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-    private void GPSControl()
-    {
+    private void GPSControl() {
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
@@ -175,9 +173,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CHECK_CODE)
-        {
+        if (requestCode == REQUEST_CHECK_CODE) {
             switch (resultCode)
             {
                 case Activity.RESULT_OK:
@@ -203,8 +199,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @SuppressLint("MissingPermission")
-    private  void getCurrentLocation()
-    {
+    private  void getCurrentLocation() {
         try {/*--------cooordinates for current location--------*/
             LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,10, (LocationListener) MapActivity.this);
@@ -215,8 +210,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @SuppressLint("NonConstantResourceId")
-    private void navigationDrawer()
-    {
+    private void navigationDrawer() {
         toolbar.setNavigationIcon(R.drawable.ic_menu);
         toolbar.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
@@ -332,7 +326,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 MaterialTextView coordinates_tv = findViewById(R.id.last_searched_tv);
                 coordinates_tv.setText(String.format("%s, %s",location.getLongitude(),location.getLatitude(),null));
-
                 //call confirm dialog
                 closeConfirmationDialog(address,String.valueOf(location.getLongitude()),String.valueOf(location.getLatitude()));
 

@@ -2,10 +2,11 @@ package com.example.findcarwashapp.dialogs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.DialogFragment;
 
 import android.text.TextUtils;
@@ -13,22 +14,15 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.cazaea.sweetalert.SweetAlertDialog;
 import com.example.findcarwashapp.R;
-import com.example.findcarwashapp.model.RequestModel;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,6 +30,7 @@ public class ChooseDialogFragment extends DialogFragment {
 
     private Context context;
     private MaterialToolbar tool_bar;
+    private AppCompatSpinner car_type_spinner;
     private MaterialButton upload_menu_btn;
 
     public ChooseDialogFragment() {
@@ -78,12 +73,14 @@ public class ChooseDialogFragment extends DialogFragment {
         setUpToolBAr(view);
         setUpChips(view);
         //uploadMenu(view);
+        getCar();
 
         return view;
     }
 
     private void init(ViewGroup view) {
         tool_bar = view.findViewById(R.id.menu_toolbar);
+        car_type_spinner = view.findViewById(R.id.car_type_spinner);
         upload_menu_btn = view.findViewById(R.id.upload_menu_btn);
     }
 
@@ -96,7 +93,6 @@ public class ChooseDialogFragment extends DialogFragment {
 
     private void setUpChips(ViewGroup view) {
         context = view.getContext();
-        //ChipGroup chipGroup = view.findViewById(R.id.chip_group);
 
         Chip full_chip = view.findViewById(R.id.full_wash_chip);
         Chip interior_chip = view.findViewById(R.id.interior_chip);
@@ -107,10 +103,10 @@ public class ChooseDialogFragment extends DialogFragment {
 
         exterior_chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (buttonView.isChecked()) {
-                Toast.makeText(getContext(),exterior_chip.getText().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),exterior_chip.getText().toString(),Toast.LENGTH_SHORT).show();
                 optionsStrings.add(exterior_chip.getText().toString());
             }else {
-                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < optionsStrings.size(); i++){
                     String pos = optionsStrings.get(i);
 
@@ -123,10 +119,10 @@ public class ChooseDialogFragment extends DialogFragment {
 
         full_chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (buttonView.isChecked()) {
-                Toast.makeText(getContext(),full_chip.getText().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),full_chip.getText().toString(),Toast.LENGTH_SHORT).show();
                 optionsStrings.add(full_chip.getText().toString());
             }else {
-                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < optionsStrings.size(); i++){
                     String pos = optionsStrings.get(i);
 
@@ -139,10 +135,10 @@ public class ChooseDialogFragment extends DialogFragment {
 
         interior_chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (buttonView.isChecked()) {
-                Toast.makeText(getContext(),interior_chip.getText().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),interior_chip.getText().toString(),Toast.LENGTH_SHORT).show();
                 optionsStrings.add(interior_chip.getText().toString());
             }else {
-                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < optionsStrings.size(); i++){
                     String pos = optionsStrings.get(i);
 
@@ -155,10 +151,10 @@ public class ChooseDialogFragment extends DialogFragment {
 
         tyre_chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (buttonView.isChecked()) {
-                Toast.makeText(getContext(),tyre_chip.getText().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),tyre_chip.getText().toString(),Toast.LENGTH_SHORT).show();
                 optionsStrings.add(tyre_chip.getText().toString());
             }else {
-                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"unchecked",Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < optionsStrings.size(); i++){
                     String pos = optionsStrings.get(i);
 
@@ -175,70 +171,61 @@ public class ChooseDialogFragment extends DialogFragment {
 
     private void uploadMenu(ViewGroup view, List<String> menuItems) {
         upload_menu_btn.setOnClickListener(v -> {
-
             context = view.getContext();
 
             try {
                 if (menuItems.size() > 0) {
-                    Toast.makeText(getContext(),menuItems.toString(),Toast.LENGTH_LONG).show();
-
-                    ConfirmSelectionsDialogFragment fragment = new ConfirmSelectionsDialogFragment(menuItems);
-                    fragment.show(getChildFragmentManager().beginTransaction(),"CONFIRMATION");
-
-                    final SweetAlertDialog dlg = new SweetAlertDialog(view.getContext(), SweetAlertDialog.PROGRESS_TYPE);
-                    dlg.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                    dlg.setTitleText("Loading");
-                    dlg.setCancelable(false);
-                    dlg.show();
-
+                    //Toast.makeText(getContext(),menuItems.toString(),Toast.LENGTH_LONG).show();
                     Bundle bundle = this.getArguments();
 
-                    if(bundle != null){
+                    if(bundle != null) {
                         // handle your code here.
                         String lan = bundle.getString("lan");
                         String lat = bundle.getString("lat");
                         String place = bundle.getString("place");
 
-                        Toast.makeText(getContext(),String.format("%s, %s",lan, lat,null),Toast.LENGTH_LONG).show();
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("lan",lan);
+                        bundle1.putString("lat",lat);
+                        bundle1.putString("place",place);
 
-                        //set the long and lang to entity
-                        RequestModel requestModel = new RequestModel();
-                        requestModel.setUserId(FirebaseAuth.getInstance().getUid());
-                        requestModel.setLocation(place);
-                        requestModel.setLatitude(lat);
-                        requestModel.setLongitude(lan);
-                        requestModel.setItems(menuItems);
-
-                        FirebaseFirestore
-                                .getInstance()
-                                .collection("Requests")
-                                .document()
-                                .set(requestModel)
-                                .addOnSuccessListener(unused -> {
-                                    dlg.cancel();
-
-                                    @SuppressLint("ShowToast")
-                                    Snackbar snackbar = Snackbar.make(v,"", Snackbar.LENGTH_LONG);
-                                    @SuppressLint("InflateParams")
-                                    View view1 = getLayoutInflater().inflate(R.layout.success_snack_bar, null);
-
-                                    snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-                                    Snackbar.SnackbarLayout snackBarView = (Snackbar.SnackbarLayout) snackbar.getView();
-                                    snackBarView.setPadding(0, 0, 0, 50);
-
-                                    snackBarView.addView(view1, 0);
-                                    snackbar.show();
-
-                                }).addOnFailureListener(e ->
-                                Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show());
-
+                        ConfirmSelectionsDialogFragment fragment = new ConfirmSelectionsDialogFragment(menuItems);
+                        fragment.setCancelable(false);
+                        fragment.setArguments(bundle1);
+                        fragment.show(getChildFragmentManager().beginTransaction(),"CONFIRMATION");
                     }else {
-                        Toast.makeText(getContext(),"Longitude & Latitude are empty!!!",Toast.LENGTH_LONG).show();
+                        Toast toast = new Toast(context);
+                        @SuppressLint("InflateParams")
+                        View view1 = LayoutInflater.from(context).inflate(R.layout.unsuccess_toast_style,null);
+                        toast.setDuration(Toast.LENGTH_LONG);
+                        toast.setView(view1);
+                        toast.show();
                     }
                 }
             }catch (Exception e) {
                 Toast.makeText(getContext(),e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void getCar(){
+        ArrayList<String> car_type = getCarTypes();
+
+        //Create adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, car_type);
+        //Set adapter
+        car_type_spinner.setAdapter(adapter);
+    }
+
+    private ArrayList<String> getCarTypes(){
+        ArrayList<String> car = new ArrayList<>();
+
+        car.add("Bike");
+        car.add("Van");
+        car.add("Truck");
+        car.add("Taxi");
+        car.add("Bus");
+
+        return car;
     }
 }

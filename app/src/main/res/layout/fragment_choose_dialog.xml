@@ -22,7 +22,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:id="@+id/imgMenu"
             android:src="@drawable/logo1"
@@ -43,154 +43,209 @@
         android:id="@+id/items_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/menu_top_app_bar"
-        app:cardElevation="3dp"
-        >
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        app:cardElevation="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            >
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="0dp"
                 android:text="@string/choose_options_below_text"
                 android:textAllCaps="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginStart="20dp"
-                android:textStyle="bold"
-                app:fontFamily="@font/pragati_narrow_bold"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                app:fontFamily="@font/teko_medium"
                 tools:ignore="RtlSymmetry" />
-
-            <!--<com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/item_full_wash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/full_wash_text"
-                android:paddingStart="20dp"
-                android:layout_marginStart="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:fontFamily="@font/pragati_narrow_bold"
-                tools:ignore="RtlSymmetry"
-                />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/item_exterior_wash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/exterior_wash_text"
-                android:paddingStart="20dp"
-                android:layout_marginStart="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:fontFamily="@font/pragati_narrow_bold"
-                tools:ignore="RtlSymmetry" />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/item_interior_wash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/interior_wash_text"
-                android:paddingStart="20dp"
-                android:layout_marginStart="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:fontFamily="@font/pragati_narrow_bold"
-                tools:ignore="RtlSymmetry" />
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/item_extra_wash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tyre_wax_text"
-                android:paddingStart="20dp"
-                android:layout_marginStart="20dp"
-                android:textAppearance="?attr/textAppearancePopupMenuHeader"
-                android:fontFamily="@font/pragati_narrow_bold"
-                tools:ignore="RtlSymmetry" />-->
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_group"
+                style="@style/Widget.MaterialComponents.ChipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.ChipGroup"
-                android:layout_marginStart="20dp"
-                >
+                android:layout_marginStart="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/full_wash_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:checked="false"
+                        app:checkedIconTint="@color/green"
                         android:text="Full wash"
-                        android:theme="@style/Theme.MaterialComponents.Light"
-                        tools:ignore="HardcodedText"
-                        />
+                        android:textColor="@android:color/black"
+                        android:paddingRight="8dp"
+                        style="@style/Widget.MaterialComponents.Chip.Entry"
+                        android:textAppearance="?android:attr/textAppearance"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipStrokeColor="@color/gray"
+                        app:chipStrokeWidth="1dp"
+                        app:showMotionSpec="@anim/left_in"
+                        app:closeIconEnabled="false"
+                        tools:ignore="HardcodedText" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/exterior_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="Exterior wash"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:checked="false"
+                        app:checkedIconTint="@color/green"
+                        android:text="External wash"
+                        android:textColor="@android:color/black"
+                        android:paddingRight="8dp"
+                        style="@style/Widget.MaterialComponents.Chip.Entry"
+                        android:textAppearance="?android:attr/textAppearance"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipStrokeColor="@color/gray"
+                        app:chipStrokeWidth="1dp"
+                        app:closeIconEnabled="false"
                         tools:ignore="HardcodedText" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/interior_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:text="Interior wash"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="Interior wash"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:checked="false"
+                        app:checkedIconTint="@color/green"
+                        android:textColor="@android:color/black"
+                        android:paddingRight="8dp"
+                        style="@style/Widget.MaterialComponents.Chip.Entry"
+                        android:textAppearance="?android:attr/textAppearance"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipStrokeColor="@color/gray"
+                        app:chipStrokeWidth="1dp"
+                        app:closeIconEnabled="false"
                         tools:ignore="HardcodedText" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/tyre_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:text="Tyre wash"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checkable="true"
-                        android:text="Tyre wash"
-                        android:theme="@style/Theme.MaterialComponents.Light"
+                        android:gravity="center"
+                        android:paddingLeft="8dp"
+                        android:checked="false"
+                        app:checkedIconTint="@color/green"
+                        android:textColor="@android:color/black"
+                        android:paddingRight="8dp"
+                        style="@style/Widget.MaterialComponents.Chip.Entry"
+                        android:textAppearance="?android:attr/textAppearance"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipStrokeColor="@color/gray"
+                        app:chipStrokeWidth="1dp"
+                        app:closeIconEnabled="false"
                         tools:ignore="HardcodedText" />
                 </LinearLayout>
             </com.google.android.material.chip.ChipGroup>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/disclaimer_text"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                app:fontFamily="@font/pragati_narrow_bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                tools:ignore="RtlSymmetry" />
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                >
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="Please choose the car type below"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
+                    app:fontFamily="@font/teko_regular"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/dodger_blue">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/car_type_spinner"
+                        style="@style/Widget.AppCompat.DropDownItem.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:elevation="3dp"/>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/disclaimer_message_text"
-                android:textAllCaps="false"
-                android:layout_marginStart="20dp"
-                app:fontFamily="@font/pragati_narrow_bold"
-                tools:ignore="RtlSymmetry"
-                android:textSize="16sp"/>
+                >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toStartOf="@+id/disclaimer_tv"
+                    android:background="@color/gray" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/disclaimer_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Disclaimer"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/gray"
+                    android:textStyle="bold"
+                    app:strokeColor="@color/dodger_blue"
+                    app:strokeWidth="1dp"
+                    tools:ignore="HardcodedText" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/disclaimer_message_text"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/pragati_narrow_bold"
+                    tools:ignore="RtlSymmetry"
+                    android:layout_below="@id/disclaimer_tv"
+                    android:layout_centerHorizontal="true"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/disclaimer_tv"
+                    android:background="@color/gray" />
+            </RelativeLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -202,9 +257,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/teko_regular"
         android:text="@string/upload_text"
         android:textColor="@color/black"
-        android:fontFamily="@font/teko_regular"
         tools:ignore="RtlHardcoded" />
 </RelativeLayout>

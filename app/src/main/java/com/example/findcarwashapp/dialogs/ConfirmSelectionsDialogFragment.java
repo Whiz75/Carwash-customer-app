@@ -1,7 +1,9 @@
 package com.example.findcarwashapp.dialogs;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,10 @@ import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.cazaea.sweetalert.SweetAlertDialog;
 import com.example.findcarwashapp.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -78,9 +80,47 @@ public class ConfirmSelectionsDialogFragment extends DialogFragment {
 
         close_btn.setOnClickListener(v -> {
 
-            ChooseDialogFragment fragment = new ChooseDialogFragment();
-            fragment.show(getChildFragmentManager().beginTransaction()
-                    .setCustomAnimations(R.anim.left_in, R.anim.left_out), "ADD MENU");
+            SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("Loading");
+            pDialog.setCancelable(false);
+
+            Bundle bundle = this.getArguments();
+            Toast toast = new Toast(context);
+            toast.setDuration(Toast.LENGTH_LONG);
+
+            if (bundle != null) {
+                String longitude = bundle.getString("lan");
+                String latitude = bundle.getString("lat");
+                String place = bundle.getString("place");
+
+                View view1 = LayoutInflater.from(getContext()).inflate(R.layout.success_toast_style,null);
+                MaterialTextView text = view1.findViewById(R.id.message);
+                text.setText(R.string.toast_text);
+                toast.setView(view1);
+            }else {
+                View view2 = LayoutInflater.from(getContext()).inflate(R.layout.unsuccess_toast_style,null);
+                MaterialTextView text = view2.findViewById(R.id.message);
+                text.setText(R.string.error_toast_text);
+                toast.setView(view2);
+            }
+
+            new CountDownTimer(5000,1000){
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    //show the loading dialog when timer ticks
+                    Toast.makeText(getContext(), String.valueOf(millisUntilFinished/1000), Toast.LENGTH_SHORT).show();
+                    pDialog.show();
+                }
+
+                @Override
+                public void onFinish() {
+                    //display the toast when timer stops
+                    pDialog.dismissWithAnimation();
+                    toast.show();
+                    dismiss();
+                }
+            }.start();
         });
 
         close_dialog.setOnClickListener(v -> dismiss());
@@ -89,30 +129,12 @@ public class ConfirmSelectionsDialogFragment extends DialogFragment {
     private void setSelectedItems(ViewGroup view) {
         context = view.getContext();
 
-        //display items in the list
-        Toast.makeText(getContext(), selectionItems.toString(), Toast.LENGTH_SHORT).show();
-
         chipGroup.removeAllViews();
+
         for (int i = 0; i <selectionItems.size(); i++) {
             Chip chip = (Chip) LayoutInflater.from(context).inflate(R.layout.chip_item,null,false);
             chip.setText(selectionItems.get(i));
-
             chipGroup.addView(chip);
         }
-
-        //test this
-        /*try {
-            chipGroup.removeAllViews();
-            LayoutInflater inflate = LayoutInflater.from(getContext());
-
-            for (int i = 0; i <selectionItems.size(); i++){
-                Chip chip1 = (Chip) inflate.inflate(R.layout.chip_item,null,false);
-
-                chip1.setText(selectionItems.get(i));
-                chipGroup.addView(chip1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 }
