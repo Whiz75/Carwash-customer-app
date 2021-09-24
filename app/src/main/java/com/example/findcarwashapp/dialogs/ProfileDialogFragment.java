@@ -79,7 +79,7 @@ public class ProfileDialogFragment extends DialogFragment {
     }
 
     private void init(ViewGroup view) {
-        tool_bar = view.findViewById(R.id.menu_toolbar);
+        tool_bar = view.findViewById(R.id.password_reset_toolbar);
         //close_dialog_img = view.findViewById(R.id.ProfileImgClose);
         username_il = view.findViewById(R.id.profile_username);
         surname_il = view.findViewById(R.id.profile_lastname);

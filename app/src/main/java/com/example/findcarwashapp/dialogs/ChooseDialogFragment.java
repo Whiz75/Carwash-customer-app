@@ -2,10 +2,8 @@ package com.example.findcarwashapp.dialogs;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.fragment.app.DialogFragment;
 
@@ -79,9 +77,9 @@ public class ChooseDialogFragment extends DialogFragment {
     }
 
     private void init(ViewGroup view) {
-        tool_bar = view.findViewById(R.id.menu_toolbar);
+        tool_bar = view.findViewById(R.id.password_reset_toolbar);
         car_type_spinner = view.findViewById(R.id.car_type_spinner);
-        upload_menu_btn = view.findViewById(R.id.upload_menu_btn);
+        upload_menu_btn = view.findViewById(R.id.reset_password_btn);
     }
 
     private void setUpToolBAr(ViewGroup view) {

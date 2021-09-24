@@ -17,7 +17,7 @@
             android:theme="@style/Widget.MaterialComponents.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/menu_toolbar"
+            android:id="@+id/password_reset_toolbar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             />
     </com.google.android.material.appbar.AppBarLayout>
