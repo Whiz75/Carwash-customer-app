@@ -29,6 +29,7 @@ import com.example.findcarwashapp.dialogs.ConfirmLocationDialogFragment;
 import com.example.findcarwashapp.dialogs.EnterLocationDialogFragment;
 import com.example.findcarwashapp.dialogs.LoadingDialogFragment;
 import com.example.findcarwashapp.dialogs.ProfileDialogFragment;
+import com.example.findcarwashapp.dialogs.RatingDialogFragment;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationRequest;
@@ -216,8 +217,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         navigationView.setNavigationItemSelectedListener(item -> {
 
-            switch (item.getItemId())
-            {
+            switch (item.getItemId()) {
                 case R.id.nav_home:
                     Toast.makeText(getApplicationContext(), "you clicked home", Toast.LENGTH_LONG).show();
                     break;
@@ -229,11 +229,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     break;
 
                 case R.id.nav_rate:
-                    Toast.makeText(getApplicationContext(), "you clicked rate", Toast.LENGTH_LONG).show();
+                    RatingDialogFragment rating = new RatingDialogFragment();
+                    rating.show(getSupportFragmentManager().beginTransaction(), "");
                     break;
+
                 case R.id.nav_share:
                     Toast.makeText(getApplicationContext(), "you clicked share", Toast.LENGTH_LONG).show();
                     break;
+
                 case R.id.nav_logout:
                     Toast.makeText(getApplicationContext(), "you clicked logout", Toast.LENGTH_LONG).show();
                     MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
@@ -248,11 +251,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
                     }).setNegativeButton("No", (dialog, which) -> dialog.dismiss());
                     builder.show();
-
                     break;
+
                 default:
                     throw new IllegalStateException("Unexpected value: " + item.getItemId());
             }
+
             return true;
         });
     }
