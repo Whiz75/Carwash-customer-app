@@ -15,22 +15,22 @@
         android:layout_centerInParent="true"
         />
 
-    <!--<com.google.android.material.textview.MaterialTextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_anime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mr. Splash car wash"
-        android:layout_centerHorizontal="true"
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_above="@id/version_no_text"
-        android:layout_marginBottom="250dp"
-        />-->
+        android:layout_marginBottom="20dp"
+        app:lottie_fileName="loading-dots.json"
+        app:lottie_autoPlay="true"
+        app:lottie_cacheComposition="true"
+        android:layout_above="@id/version_no_text"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/version_no_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_version_text"
+        android:textSize="12sp"
         android:layout_centerHorizontal="true"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"

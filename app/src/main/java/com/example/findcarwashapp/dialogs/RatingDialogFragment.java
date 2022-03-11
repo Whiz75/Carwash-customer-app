@@ -1,7 +1,10 @@
 package com.example.findcarwashapp.dialogs;
 
+import static android.widget.Toast.LENGTH_LONG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +12,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.fragment.app.DialogFragment;
 import com.example.findcarwashapp.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.io.CharArrayWriter;
 import java.util.Objects;
 
 public class RatingDialogFragment extends DialogFragment {
 
     private MaterialButton rate_btn;
     private ImageView rating_close_dialog;
+    private AppCompatRatingBar ratingBar;
     Context context;
 
     public RatingDialogFragment() {
@@ -55,24 +61,28 @@ public class RatingDialogFragment extends DialogFragment {
         return viewGroup;
     }
 
+    //initialize dialog components
     private void inti(ViewGroup view) {
         rating_close_dialog = view.findViewById(R.id.rating_dialog_cancel);
         rate_btn = view.findViewById(R.id.rate_btn);
+        ratingBar = view.findViewById(R.id.rating_bar);
     }
 
+    //dialog functionality
     private void rateDialog(ViewGroup view) {
         context = view.getContext();
 
         rate_btn.setOnClickListener(v -> {
 
-            Toast toast = new Toast(context);
-            toast.setDuration(Toast.LENGTH_LONG);
+            ratingBar.setFocusable(false);
+            float ratings = ratingBar.getRating();
 
-            @SuppressLint("InflateParams")
-            View view1 = LayoutInflater.from(getContext()).inflate(R.layout.success_toast_style,null);
-            MaterialTextView text = view1.findViewById(R.id.message);
-            text.setText(R.string.toast_text);
-            toast.setView(view1);
+            try {
+                Toast.makeText(context,"Thank you for rating us!!!" , LENGTH_LONG).show();
+                getDialog().dismiss();
+            } catch (Resources.NotFoundException e) {
+                e.printStackTrace();
+            }
         });
 
         rating_close_dialog.setOnClickListener(v -> dismiss());

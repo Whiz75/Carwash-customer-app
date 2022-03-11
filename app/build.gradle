@@ -59,4 +59,7 @@ dependencies {
     implementation 'com.github.cazaea:sweet-alert-dialog:1.0.0'
 
     //implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    //lottie animation
+    implementation 'com.airbnb.android:lottie:5.0.3'
+
 }

@@ -26,7 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         Thread thread = new Thread(() -> {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(5000);
                 if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                     Intent map = new Intent(getApplicationContext(),MapActivity.class);
                     startActivity(map);

@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -22,6 +23,7 @@ import android.location.Geocoder;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.example.findcarwashapp.R;
@@ -84,7 +86,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         GPSControl();
         getCurrentLocation();
         bottomSheetAnimation();
-        //closeConfirmationDialog();
         openEnterLocationDialog();
 
         if (ContextCompat.checkSelfPermission(MapActivity.this,
@@ -226,15 +227,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     //call profile frag
                     ProfileDialogFragment dialogFragment = new ProfileDialogFragment();
                     dialogFragment.show(getSupportFragmentManager().beginTransaction(), "PROFILE FRAG");
+
                     break;
 
                 case R.id.nav_rate:
                     RatingDialogFragment rating = new RatingDialogFragment();
                     rating.show(getSupportFragmentManager().beginTransaction(), "");
+
                     break;
 
                 case R.id.nav_share:
                     Toast.makeText(getApplicationContext(), "you clicked share", Toast.LENGTH_LONG).show();
+
                     break;
 
                 case R.id.nav_logout:
@@ -251,6 +255,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         startActivity(new Intent(getApplicationContext(),LoginSignupActivity.class));
                     }).setNegativeButton("No", (dialog, which) -> dialog.dismiss());
                     builder.show();
+
                     break;
 
                 default:
