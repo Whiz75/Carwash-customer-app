@@ -30,7 +30,7 @@
                 tools:ignore="ContentDescription" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/confirm_order_tv"
+                android:id="@+id/confirm_location_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/teko_medium"
@@ -56,7 +56,7 @@
             android:text="confirm"
             style="@style/Widget.MaterialComponents.Button"
             android:textStyle="normal"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAllCaps="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"

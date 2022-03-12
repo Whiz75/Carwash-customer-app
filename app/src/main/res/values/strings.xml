@@ -3,7 +3,7 @@
     <string name="app_name">FindCarWash</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="loading_text">Loading...please wait</string>
+    <string name="loading_text" tools:ignore="TypographyEllipsis">Loading...please wait</string>
 
     <!--Api key-->
     <string name="key" tools:ignore="Typos">AIzaSyDMf1J05oglGELWpCi3O03V9YSujs8ld4g</string>
@@ -18,9 +18,14 @@
     <string name="tyre_wax_text">Tyre wax</string>
     <string name="app_version_text">Version 1.0.0</string>
 
-    <string name="toast_text">Successfully...placed request!!!</string>
-    <string name="error_toast_text">Error...while placing order</string>
+    <string name="toast_text" tools:ignore="TypographyEllipsis">Successfully...placed request!!!</string>
+    <string name="error_toast_text" tools:ignore="TypographyEllipsis">Error...while placing order</string>
 
     <string name="network_error_connection_text">No internet connection</string>
     <string name="network_error">Network error!!!</string>
+    <string name="reset_text">reset</string>
+    <string name="confirm_location_text">Confirm location</string>
+    <string name="enter_your_location_text">Enter your location</string>
+    <string name="current_location_text">current location</string>
+    <string name="find_location_text">find location</string>
 </resources>

@@ -29,22 +29,32 @@
                 tools:ignore="ContentDescription" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/confirm_order_tv"
+                android:id="@+id/confirm_location_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/teko_medium"
-                android:text="Confirm location"
+                android:text="@string/confirm_location_text"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                tools:ignore="RelativeOverlap" />
         </RelativeLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/location"/>
+            android:layout_height="180dp"
+            app:lottie_fileName="location-pin-icon.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="restart"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/gray" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/confirmLocationAddress_tv"
@@ -62,6 +72,12 @@
             app:drawableStartCompat="@drawable/ic_person_pin"
             tools:ignore="HardcodedText" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/gray" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/close_btn"
             android:layout_width="wrap_content"
@@ -69,7 +85,7 @@
             android:text="confirm"
             style="@style/Widget.MaterialComponents.Button"
             android:textStyle="normal"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textAllCaps="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
