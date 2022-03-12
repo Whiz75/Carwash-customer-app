@@ -8,7 +8,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -23,7 +22,6 @@ import android.location.Geocoder;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.widget.Toast;
 
 import com.example.findcarwashapp.R;
@@ -93,7 +91,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Toast.makeText(MapActivity.this, "You have already granted this permission!",
                     Toast.LENGTH_SHORT).show();
 
-            SupportMapFragment supportMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map));
+            SupportMapFragment supportMapFragment;
+            supportMapFragment = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map));
             assert supportMapFragment != null;
             supportMapFragment.getMapAsync(this);
 
@@ -188,6 +187,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == LOCATION_PERMISSION_CODE)
@@ -202,7 +202,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @SuppressLint("MissingPermission")
     private  void getCurrentLocation() {
-        try {/*--------cooordinates for current location--------*/
+        try {
+            /*--------coordinates for current location--------*/
             LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,10, (LocationListener) MapActivity.this);
 

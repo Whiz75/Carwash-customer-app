@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".dialogs.EnterLocationDialogFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="UselessParent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/connection_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/teko_medium"
+            android:text="@string/network_error"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_connection"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="network-lost.json"
+            app:lottie_loop="true"
+            android:layout_below="@id/connection_text"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/okay_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Okay"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/teko_regular"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            app:cornerRadius="5dp"
+            android:layout_below="@id/lottie_connection"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+</FrameLayout>

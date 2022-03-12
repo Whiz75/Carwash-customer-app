@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".dialogs.ChooseDialogFragment">
 
@@ -29,17 +29,7 @@
             />
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/select_"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_add"
-        tools:ignore="ContentDescription"
-        app:layout_anchor="@id/menu_top_app_bar"
-        app:layout_anchorGravity="end|bottom"/>-->
-
-    <com.google.android.material.card.MaterialCardView
+    <RelativeLayout
         android:id="@+id/items_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -185,18 +175,18 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
                     app:cardElevation="3dp"
-                    app:cardBackgroundColor="@color/dodger_blue">
+                    >
 
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/car_type_spinner"
                         style="@style/Widget.AppCompat.DropDownItem.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        app:elevation="3dp"/>
+                        app:elevation="3dp" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <RelativeLayout
+            <!---<RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
@@ -215,9 +205,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="0dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Disclaimer"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -245,21 +235,22 @@
                     android:layout_marginEnd="20dp"
                     android:layout_toEndOf="@+id/disclaimer_tv"
                     android:background="@color/gray" />
-            </RelativeLayout>
+            </RelativeLayout>-->
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/reset_password_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/items_cv"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/teko_regular"
         android:text="@string/upload_text"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:ignore="RtlHardcoded" />
 </RelativeLayout>

@@ -20,4 +20,7 @@
 
     <string name="toast_text">Successfully...placed request!!!</string>
     <string name="error_toast_text">Error...while placing order</string>
+
+    <string name="network_error_connection_text">No internet connection</string>
+    <string name="network_error">Network error!!!</string>
 </resources>

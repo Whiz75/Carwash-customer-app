@@ -58,6 +58,7 @@
                             tools:ignore="HardcodedText" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <!--text view to display the location coordinates-->
+
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/last_searched_tv"
                     android:layout_width="wrap_content"
