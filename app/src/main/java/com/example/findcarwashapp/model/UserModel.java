@@ -5,18 +5,21 @@ public class UserModel {
     public String lastName;
     public String email;
     public String id;
-    String uri;
+    public String uri;
+    public String UserType;
+
 
     public UserModel() {
         //empty constructor
     }
 
-    public UserModel(String name, String lastName, String email, String id, String uri) {
+    public UserModel(String name, String lastName, String email, String id, String uri, String userType) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.id = id;
         this.uri = uri;
+        UserType = userType;
     }
 
     public String getName() {
@@ -57,5 +60,13 @@ public class UserModel {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public String getUserType() {
+        return UserType;
+    }
+
+    public void setUserType(String userType) {
+        UserType = userType;
     }
 }

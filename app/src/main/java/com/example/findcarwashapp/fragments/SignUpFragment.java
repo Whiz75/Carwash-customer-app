@@ -121,16 +121,15 @@ public class SignUpFragment extends Fragment {
 
                     auth.createUserWithEmailAndPassword(email, password)
                             .addOnSuccessListener(authResult -> {
-
                                 //get current user's id
                                 String uid = auth.getUid();
-
                                 //User model instance
                                 UserModel user = new UserModel();
                                 user.setId(uid);
                                 user.setName(name);
                                 user.setLastName(lastName);
                                 user.setEmail(email);
+                                user.setUserType("Customer");
 
                                 FirebaseFirestore
                                         .getInstance()
